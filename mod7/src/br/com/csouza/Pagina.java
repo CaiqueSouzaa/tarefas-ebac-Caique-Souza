@@ -21,7 +21,7 @@ public class Pagina {
      *                     <br/>
      * @param maxLinhas A variável "maxLinhas" define a quantia maxima de linhas que a página pode ter
      */
-    public Pagina(int numeroPagina, int maxLinhas) {
+    protected Pagina(int numeroPagina, int maxLinhas) {
         this.numeroPagina = numeroPagina;
         this.maxLinhas = maxLinhas;
     }
@@ -30,7 +30,7 @@ public class Pagina {
      * Método para atualizar o número da página caso necessário.
      * @param numeroPagina
      */
-    public void setNumeroPagina(int numeroPagina) {
+    protected void setNumeroPagina(int numeroPagina) {
         this.numeroPagina = numeroPagina;
     }
 
@@ -38,7 +38,7 @@ public class Pagina {
      * Método para atualizar a quantia máxima de linhas da página caso necessário.
      * @param maxLinhas
      */
-    public void setMaxLinhas(int maxLinhas) {
+    protected void setMaxLinhas(int maxLinhas) {
         this.maxLinhas = maxLinhas;
     }
 
@@ -46,7 +46,7 @@ public class Pagina {
      * Método para obter o número da página.
      * @return int numeroPagina - Número inteiro contendo o número da página.
      */
-    public int getNumeroPagina() {
+    protected int getNumeroPagina() {
         return numeroPagina;
     }
 
@@ -54,7 +54,7 @@ public class Pagina {
      * Método para obter a quatia total de linhas que a página suporta
      * @return
      */
-    public int getMaxLinhas() {
+    protected int getMaxLinhas() {
         return this.maxLinhas;
     }
 
@@ -62,7 +62,7 @@ public class Pagina {
      * Método para obter a quantia total de linhas em uso.
      * @return int usoTotal - Número inteiro informando o total de linhas em uso.
      */
-    public int getTotalLinhas() {
+    protected int getTotalLinhas() {
         return this.linhas.size();
     }
 
@@ -71,7 +71,7 @@ public class Pagina {
      * @param linha String - Novo texto a ser inserido na página.
      * @throws IOException Será lançado um "throw" caso tente adicionar uma nova linha e o limite de "maxLinhas" já tiver sido atingido.
      */
-    public void adicionarNovaLinha(String linha) throws IOException {
+    protected void adicionarNovaLinha(String linha) throws IOException {
         if (this.getTotalLinhas() >= this.maxLinhas) {
             throw new IOException("Não foi possivel adicionar uma nova linha. Quantia maxima de linhas atingida.");
         } else this.linhas.add(linha);
@@ -81,7 +81,7 @@ public class Pagina {
      * Método para retornar o array do texto presente na página.
      * @return ArrayList<String> arrayLinha - ArrayList<String> contendo as linhas da página.
      */
-    public ArrayList<String> getLinhas() {
+    protected ArrayList<String> getLinhas() {
         return this.linhas;
     }
 
@@ -91,9 +91,9 @@ public class Pagina {
      * @return String linha - String contendo a linha solicitada.
      * @throws IOException Será lançado um "throw" caso busque por uma linha que não exista na página.
      */
-    public String obterUmaLinha(int numeroLinha) throws IOException {
+    protected String obterUmaLinha(int numeroLinha) throws IOException {
         if (numeroLinha > this.getTotalLinhas()) {
-            throw new IOException(String.format("A linha %s não existe", numeroLinha));
+            throw new IOException(String.format("A linha %s não existe", String.valueOf(numeroLinha)));
         }
         return this.linhas.get(numeroLinha);
     }
@@ -103,7 +103,7 @@ public class Pagina {
      * @return String pagina - String com quebras de texto para simular uma página.
      * @throws IOException Veja {@link br.com.csouza.Pagina#obterUmaLinha(int)}
      */
-    public String lerPagina() throws IOException {
+    protected String lerPagina() throws IOException {
         String pagina = "";
         for (int i = 0; i < this.getTotalLinhas(); i ++) {
             try {
