@@ -6,6 +6,7 @@ public class Main {
         app.init();
 
         final Integer value = app.getValue();
-        System.out.printf("O número informado possui [%s] caracteres.", value.toString().length());
+        final int length = value.toString().length();
+        System.out.printf("O número informado possui [%s] %s.", value.toString().length(), length > 1 ? "caracteres" : "caractere");
     }
 }

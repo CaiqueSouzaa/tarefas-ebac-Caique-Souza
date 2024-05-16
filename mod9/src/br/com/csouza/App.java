@@ -15,6 +15,7 @@ public class App {
      * @param value int value - Número inteiro a ser convertido para "Integer".
      */
     public void setValue(int value) {
+        System.out.println("Executando o [Casting] para adicionar o valor do tipo [int] a uma variável do tipo [Wrapper Integer].");
         this.value = value;
     }
 
