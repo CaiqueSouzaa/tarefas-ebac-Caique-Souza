@@ -18,4 +18,4 @@ Repositório criado com o objetivo de realizar a entrega de atividades EBAC
 [Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/mod8) - Tarefa
 
 ## Módulo 7 - Casting de valores
-[Link de acesso]{https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/mod9} - Tarefa
+[Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/mod9) - Tarefa
