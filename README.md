@@ -25,3 +25,6 @@ Repositório criado com o objetivo de realizar a entrega de atividades EBAC
 
 ## Módulo 11 - Coleções
 [Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/mod11) - Tarefa
+
+## Módulo 12 - Coleções 2
+[Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/mod12) - Tarefa
