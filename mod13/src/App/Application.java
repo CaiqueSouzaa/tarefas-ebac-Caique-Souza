@@ -44,11 +44,11 @@ public class Application {
 
         while (!isValid) {
             try {
+                System.out.print(">> ");
                 number = scanner.nextInt();
                 isValid = true;
             } catch (Exception err) {
                 System.out.println("Input não válido, tente novamente. Insira somente números inteiros.");
-                System.out.print(">> ");
                 scanner.next();
             }
         }
@@ -58,7 +58,7 @@ public class Application {
 
     private void logic(Scanner scanner) {
         while (true) {
-            System.out.print("-------------------------\n[ Início ]\n-------------------------\nDigite o número da ação a ser executada:\n1 - Registros\n2 - Finalizar aplicação\n>> ");
+            System.out.print("-------------------------\n[ Início ]\n-------------------------\nDigite o número da ação a ser executada:\n1 - Registros\n2 - Finalizar aplicação\n");
             int response = this.intInputValidation(scanner);
 
             switch (response) {
@@ -80,7 +80,7 @@ public class Application {
 
     private void registers(Scanner scanner) {
         while (true) {
-            System.out.println("-------------------------\n[ Registros ]\n-------------------------\nDigite o número da ação a ser executada:\n1 - Visualizar\n2 - Registrar\n3 - Voltar\n4 - Finalizar aplicação\n>> ");
+            System.out.println("-------------------------\n[ Registros ]\n-------------------------\nDigite o número da ação a ser executada:\n1 - Visualizar\n2 - Registrar\n3 - Voltar\n4 - Finalizar aplicação");
             int response = this.intInputValidation(scanner);
             switch (response) {
                 case 1:
@@ -101,15 +101,15 @@ public class Application {
 
                 default:
                     System.out.println("Opção não válida. Tente novamente.");
-                    scanner.next();
                     System.out.print(">> ");
+                    scanner.next();
             }
         }
     }
 
     private void registerOption1(Scanner scanner) {
         while (true) {
-            System.out.println("-------------------------\n[ Visualizar Registros ]\n-------------------------\nDigite o número da ação a ser executada:\n1 - Pessoas fisicas\n2 - Pessoas fisicas\n3 - Voltar\n4 - Finalizar aplicação\n>> ");
+            System.out.println("-------------------------\n[ Visualizar Registros ]\n-------------------------\nDigite o número da ação a ser executada:\n1 - Visualizar pessoas fisicas\n2 - Visualizar pessoas juridicas\n3 - Voltar\n4 - Finalizar aplicação");
             int response = this.intInputValidation(scanner);
             switch (response) {
                 case 1:
@@ -138,7 +138,7 @@ public class Application {
 
     private void registerOption2(Scanner scanner) {
         while (true) {
-            System.out.println("-------------------------\n[ Registrar ]\n-------------------------\nDigite o número da ação a ser executada:\n1 - Pessoa fisica\n2 - Pessoa juridica\n3 - Voltar\n4 - Finalizar aplicação\n>> ");
+            System.out.println("-------------------------\n[ Registrar ]\n-------------------------\nDigite o número da ação a ser executada:\n1 - Registrar pessoa fisica\n2 - Registrar pessoa juridica\n3 - Voltar\n4 - Finalizar aplicação");
             int response = this.intInputValidation(scanner);
             switch (response) {
                 case 1:
@@ -165,35 +165,92 @@ public class Application {
         }
     }
 
-    private void pageShowPessoasFisicas(Scanner scanner) {}
-
-    private void pageShowPessoasJuridicas(Scanner scanner) {}
-
-    private void pageRegisterPessoaFisica(Scanner scanner) {}
-
-    private void pageRegisterPessoaJuridica(Scanner scanner) {}
-
-    /**
-     * Método para criar uma nova pessoa, tanto fisica quanto juridica.
-     * @param name Tipo String - Nome da pessoa
-     * @param surname Tipo String - Sobrenome da pessoa
-     * @param cpf Tipo String - CPF da pessoa
-     * @return Objeto PessoaFisica
-     */
-    private IPessoaFisica create(String name, String surname, String cpf) {
-        return new PessoaFisica(name, surname, cpf);
+    private void pageShowPessoasFisicas(Scanner scanner) {
+        if (this.pessoasFisicas.isEmpty()) {
+            System.out.println("-------------------------\n--- [ Não há registros de pessoas fisicas ] ---");
+        } else {
+            System.out.println("--- [ Pessoas fisicas ] ---");
+            for (IPessoaFisica pessoa : this.pessoasFisicas) {
+                System.out.println("|> " + pessoa.getName() + ' ' + pessoa.getSurname());
+            }
+        }
     }
 
-    /**
-     * Método para criar uma nova pessoa, tanto fisica quanto juridica.
-     * @param name Tipo String - Nome da pessoa
-     * @param surname Tipo String - Sobrenome da pessoa
-     * @param cnpj Tipo String - CNPJ da pessoa
-     * @param companyName Tipo String - Nome da empresa da pessoa
-     * @return Objeto PessoaJuridica
-     */
-    private IPessoaJuridica create(String name, String surname, String cnpj, String companyName) {
-        return new PessoaJuridica(name, surname, cnpj, companyName);
+    private void pageShowPessoasJuridicas(Scanner scanner) {
+        if (this.pessoasJuridicas.isEmpty()) {
+            System.out.println("-------------------------\n--- [ Não há registros de pessoas juridicas ] ---");
+        } else {
+            System.out.println("--- [ Pessoas juridicas ] ---");
+            for (IPessoaJuridica pessoa : this.pessoasJuridicas) {
+                System.out.println("|> " + pessoa.getName() + ' ' + pessoa.getSurname() + " - " + pessoa.getCompanyName());
+            }
+        }
+    }
+
+    private void pageRegisterPessoaFisica(Scanner scanner) {
+        String name = "";
+        String surname = "";
+        String cpf = "";
+
+        // Obtendo o nome da pessoa
+        System.out.print("Nome: ");
+        while (name.isEmpty()) {
+            name = scanner.nextLine();
+        }
+
+        // Obtendo o sobrenome da pessoa
+        System.out.print("Sobrenome: ");
+        while (surname.isEmpty()) {
+            surname = scanner.nextLine();
+        }
+
+        // Obtendo o cpf da pessoa
+        System.out.print("CPF: ");
+        while (cpf.isEmpty()) {
+            cpf = scanner.nextLine();
+        }
+
+        // Registrando a pessoa
+        this.add(new PessoaFisica(name, surname, cpf));
+
+        System.out.println("--- [ Pessoa registrada com sucesso! ] ---\n" + "|> " + name + ' ' + surname);
+    }
+
+    private void pageRegisterPessoaJuridica(Scanner scanner) {
+        String name = "";
+        String surname = "";
+        String cnpj = "";
+        String companyName = "";
+
+        // Obtendo o nome da pessoa
+        System.out.print("Nome: ");
+        while (name.isEmpty()) {
+            name = scanner.nextLine();
+        }
+
+        // Obtendo o sobrenome da pessoa
+        System.out.print("Sobrenome: ");
+        while (surname.isEmpty()) {
+            surname = scanner.nextLine();
+        }
+
+        // Obtendo o cpf da pessoa
+        System.out.print("CNPJ: ");
+        while (cnpj.isEmpty()) {
+            cnpj = scanner.nextLine();
+        }
+
+        // Obtendo o nome da empresa
+        System.out.print("Nome da empresa: ");
+        while (companyName.isEmpty()) {
+            companyName = scanner.nextLine();
+        }
+
+        // Registrando a pessoa
+        this.add(new PessoaJuridica(name, surname, cnpj, companyName));
+
+        System.out.println("--- [ Pessoa registrada com sucesso! ] ---\n" + "|> " + name + ' ' + surname + " - " + companyName);
+
     }
 
     /**
@@ -210,22 +267,6 @@ public class Application {
      */
     private void add(IPessoaJuridica pessoaJuridica) {
         this.pessoasJuridicas.add((pessoaJuridica));
-    }
-
-    /**
-     * Método para remover uma pessoa fisica da lista.
-     * @param pessoaFisica Tipo Objeto PessoaFisica
-     */
-    private void remove(IPessoaFisica pessoaFisica) {
-        this.pessoasFisicas.remove(pessoaFisica);
-    }
-
-    /**
-     * Método para remover uma pessoa juridica da lista.
-     * @param pessoaJuridica Tipo Objeto PessoaJuridica
-     */
-    private void remove(IPessoaJuridica pessoaJuridica) {
-        this.pessoasJuridicas.remove(pessoaJuridica);
     }
 
     private void applicationStop() {
