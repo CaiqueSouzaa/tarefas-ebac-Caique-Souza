@@ -112,7 +112,6 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         cleanButton.setText("Limpar");
-        cleanButton.setEnabled(false);
         cleanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cleanButtonActionPerformed(evt);
@@ -283,7 +282,6 @@ public class HomePage extends javax.swing.JFrame {
         this.registerButton.setEnabled(true);
         this.updateButton.setEnabled(false);
         this.destroyButton.setEnabled(false);
-        this.cleanButton.setEnabled(false);
         this.clientsTable.clearSelection();
     }//GEN-LAST:event_cleanButtonActionPerformed
 
@@ -320,6 +318,10 @@ public class HomePage extends javax.swing.JFrame {
             this.messagesLabel.setText("Ocorreu um erro ao excluir o cliente");
             this.messagesLabel.setVisible(true);
         }
+        this.clearInputs();
+        this.registerButton.setEnabled(true);
+        this.updateButton.setEnabled(false);
+        this.destroyButton.setEnabled(false);
         
         this.tableModel.removeRow(selectedRow);
     }//GEN-LAST:event_destroyButtonActionPerformed
