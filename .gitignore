@@ -1,1 +1,4 @@
 *.class
+/mod14/CRUDClients/nbproject/private/
+/mod14/CRUDClients/build/
+/mod14/CRUDClients/dist/
