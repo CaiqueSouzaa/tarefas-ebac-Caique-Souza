@@ -37,3 +37,6 @@ Repositório criado com o objetivo de realizar a entrega de atividades EBAC
 
 ## Módulo 15 - Padrões de Projeto
 [Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/tarefa_padroes_de_projeto01) - Padrões de Projeto #01
+
+## Módulo 16 - Padrão de Projeot Injeção de Dependência
+[Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/InjecaoDeDependencia) - Injeção de Dependência
