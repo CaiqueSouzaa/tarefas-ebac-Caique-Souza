@@ -40,3 +40,6 @@ Repositório criado com o objetivo de realizar a entrega de atividades EBAC
 
 ## Módulo 16 - Padrão de Projeot Injeção de Dependência
 [Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/InjecaoDeDependencia) - Injeção de Dependência
+
+## Módulo 17 - Generics
+[Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/Generics) - Generics
