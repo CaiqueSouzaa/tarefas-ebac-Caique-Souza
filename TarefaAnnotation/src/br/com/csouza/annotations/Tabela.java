@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface TableAnnotation {
+public @interface Tabela {
     /**
      * Método para definir nome da tabela.
      * @return Nome da tabela

@@ -1,7 +1,7 @@
 package br.com.csouza.concrets;
 
-import br.com.csouza.annotations.TableAnnotation;
+import br.com.csouza.annotations.Tabela;
 
-@TableAnnotation("Users")
+@Tabela("Users")
 public class Table {
 }
