@@ -49,3 +49,6 @@ Repositório criado com o objetivo de realizar a entrega de atividades EBAC
 
 ## Módulo 19 - Reflections e Annotations
 [Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/mod19) - Reflections e Annotations
+
+## Módulo 22 - Expressões Lambdas e Streams
+[Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/Tarefa_Streams) - Tarefa Streams
