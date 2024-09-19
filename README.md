@@ -52,3 +52,6 @@ Repositório criado com o objetivo de realizar a entrega de atividades EBAC
 
 ## Módulo 22 - Expressões Lambdas e Streams
 [Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/Tarefa_Streams) - Tarefa Streams
+
+## Módulo 23 - Testes Parte #01
+[Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/Testes_parte_01) - Testes Parte #01
