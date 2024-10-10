@@ -27,4 +27,9 @@ public class Product extends DatabaseObject {
     public int getAmount() {
         return this.amount;
     }
+
+    @Override
+    public String toString() {
+        return "Product: {'id': " + this.getId() + ", 'name': " + this.name + ", 'price': " + this.price + ", 'amount': " + this.amount + "}";
+    }
 }

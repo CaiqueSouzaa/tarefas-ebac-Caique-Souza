@@ -4,14 +4,7 @@ import br.com.csouza.entities.DatabaseObject;
 
 import java.util.Collection;
 
-/**
- * Interface resposável por conter os métodos CRUD usados nos DAO.
- * @param <T> Tipo do objeto a ser manipulado.
- *
- * @author Caique Souza
- * @version 1.0
- */
-public interface IGenericDAO<T extends DatabaseObject> {
+public interface IGenericService <T extends DatabaseObject> {
     /**
      * Método para obter um único registro com base no id pesquisado.
      * @param id - ID do resgistro a ser pesquisado;

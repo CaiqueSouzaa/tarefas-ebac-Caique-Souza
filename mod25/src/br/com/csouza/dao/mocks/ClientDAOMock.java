@@ -1,13 +1,13 @@
 package br.com.csouza.dao.mocks;
 
-import br.com.csouza.entities.Product;
+import br.com.csouza.entities.Client;
 import br.com.csouza.exceptions.EntityWithoutTableNameException;
-import br.com.csouza.interfaces.IProductDAO;
+import br.com.csouza.interfaces.IClientDAO;
 import br.com.csouza.utils.GetTableName;
 
-public class ProductDAOMock extends GenericDAOMock<Product> implements IProductDAO {
+public class ClientDAOMock extends GenericDAOMock<Client> implements IClientDAO {
     @Override
     protected String getTableName() throws EntityWithoutTableNameException {
-        return GetTableName.getTableNameClass(Product.class);
+        return GetTableName.getTableNameClass(Client.class);
     }
 }
