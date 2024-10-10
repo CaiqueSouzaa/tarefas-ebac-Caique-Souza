@@ -58,3 +58,6 @@ Repositório criado com o objetivo de realizar a entrega de atividades EBAC
 
 ## Módulo 24 - Testes Parte #02
 [Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/TarefaMod24) - Testes Parte #02
+
+## Módugo 25 - Entrega da atividade do módulo 25
+[Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/mod25) - Entrega da atividade do módulo 25
