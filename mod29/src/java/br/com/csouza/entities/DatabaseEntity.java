@@ -15,6 +15,13 @@ public class DatabaseEntity {
 
 	/**
 	 * @param id ID do registro.
+	 */
+	public DatabaseEntity(Long id) {
+		this.id = id;
+	}
+	
+	/**
+	 * @param id ID do registro.
 	 * @param createdAt Timestamp de criação do registro.
 	 */
 	public DatabaseEntity(Long id, Timestamp createdAt) {

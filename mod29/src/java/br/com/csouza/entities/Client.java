@@ -23,6 +23,15 @@ public class Client extends DatabaseEntity {
 		this.age = age;
 	}
 	
+	public Client(Long id, String name, String surname, String cpf, String telephone, int age) {
+		super(id);
+		this.name = name;
+		this.surname = surname;
+		this.cpf = cpf;
+		this.telephone = telephone;
+		this.age = age;
+	}
+	
 	public Client(Long id, String name, String surname, String cpf, String telephone, int age, Timestamp createdAt) {
 		super(id, createdAt);
 		this.name = name;

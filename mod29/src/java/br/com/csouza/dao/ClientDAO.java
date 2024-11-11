@@ -91,4 +91,19 @@ public class ClientDAO extends GenericDAO<Client> implements IClientDAO {
 	protected String getIndexSQL() throws WithoutTableName {
 		return "SELECT * FROM " + TableNameUtil.getTableNameClass(Client.class);
 	}
+
+	@Override
+	protected String getUpdateSQL() throws WithoutTableName {
+		return "UPDATE " + TableNameUtil.getTableNameClass(Client.class) + " SET name = ?, surname = ?, cpf = ?, telephone = ?, age = ? WHERE id = ?";
+	}
+
+	@Override
+	protected void preparedUpdateSQL(PreparedStatement stm, Client entity) throws SQLException {
+		stm.setString(1, entity.getName());
+		stm.setString(2, entity.getSurname());
+		stm.setString(3, entity.getCpf());
+		stm.setString(4, entity.getTelephone());
+		stm.setInt(5, entity.getAge());
+		stm.setLong(6, entity.getId());
+	}
 }

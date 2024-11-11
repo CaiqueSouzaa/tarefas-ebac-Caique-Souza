@@ -86,8 +86,20 @@ public abstract class GenericDAO<T extends DatabaseEntity> implements IGenericDA
 
 	@Override
 	public Integer update(T entity) throws SQLException, WithoutTableName {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		try {
+			conn = ConnectionFactory.getConnection();
+			stm = conn.prepareStatement(this.getUpdateSQL());
+			this.preparedUpdateSQL(stm, entity);
+			
+			return stm.executeUpdate();
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			this.closeConnection(conn, stm, null);
+		}
 	}
 
 	@Override
@@ -141,6 +153,21 @@ public abstract class GenericDAO<T extends DatabaseEntity> implements IGenericDA
 	 * @throws WithoutTableName Exception lançada caso o nome da tabela não esteja configurada na entidade.
 	 */
 	protected abstract String getIndexSQL() throws WithoutTableName;
+	
+	/**
+	 * Método abstrato responsável por obter a consulta SQL de atualização de um unico registro.
+	 * @return SQL de atualização não formatada.
+	 * @throws WithoutTableName Exception lançada caso o nome da tabela não esteja configurada na entidade.
+	 */
+	protected abstract String getUpdateSQL() throws WithoutTableName;
+	
+	/**
+	 * Método abstrato responsável por formatar a consulta SQL de atualização;
+	 * @param stm PreparedStatement a ser formatado.
+	 * @param entity Dados do registro a ser atualizado.
+	 * @throws SQLException Falha na conexão ou manipulação no banco de dados.
+	 */
+	protected abstract void preparedUpdateSQL(PreparedStatement stm, T entity) throws SQLException;
 	
 	/**
 	 * Método abstrato resposável por obter a consulta SQL de exclusão.
