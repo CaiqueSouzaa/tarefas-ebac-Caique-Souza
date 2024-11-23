@@ -1,6 +1,7 @@
-package br.com.csouza.dao;
+package br.com.csouza.dao.mocks;
 
 import br.com.csouza.annotations.use.TableUse;
+import br.com.csouza.dao.GenericDAO;
 import br.com.csouza.entities.DatabaseEntity;
 import br.com.csouza.exceptions.WithoutTableNameException;
 import br.com.csouza.interfaces.dao.IGenericDAO;
@@ -16,8 +17,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
-public abstract class GenericDAO<T extends DatabaseEntity> implements IGenericDAO<T> {
-
+public abstract class GenericDAOMock<T extends DatabaseEntity> implements IGenericDAO<T> {
     /**
      * Método responsável por fornecer a conexão ao banco de dados.
      * @return Conexão ao bando de dados.
@@ -128,6 +128,7 @@ public abstract class GenericDAO<T extends DatabaseEntity> implements IGenericDA
             this.closeConnection(conn, stm, null);
         }
     }
+
     /**
      * Método para finalizar a conexão com o banco de dadados.
      * @param conn Connection

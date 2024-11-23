@@ -1,9 +1,8 @@
-package br.com.csouza.dao;
+package br.com.csouza.dao.mocks;
 
 import br.com.csouza.annotations.use.TableUse;
 import br.com.csouza.entities.Product;
 import br.com.csouza.entities.Storage;
-import br.com.csouza.exceptions.WithoutFieldColumnNameException;
 import br.com.csouza.exceptions.WithoutTableNameException;
 import br.com.csouza.factories.BuildProduct;
 import br.com.csouza.factories.BuildStorage;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class StorageDAO extends GenericDAO<Storage> implements IStorageDAO {
+public class StorageDAOMock extends GenericDAOMock<Storage> implements IStorageDAO {
 
     @Override
     protected Class<Storage> getEntityClass() {

@@ -27,7 +27,7 @@ public class TableColumnTest {
 //            System.out.println(TableUse.getTableColumnName(f));
 //            System.out.println(TableUse.getTableColumnSetValue(f));
 //            System.out.println(TableUse.getTableColumnType(f));
-            System.out.println(TableUse.getTableColumnTypeClass(f));
+//            System.out.println(TableUse.getTableColumnTypeClass(f));
         }
     }
 }

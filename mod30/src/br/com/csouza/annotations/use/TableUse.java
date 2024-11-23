@@ -6,24 +6,47 @@ import br.com.csouza.entities.DatabaseEntity;
 import br.com.csouza.exceptions.WithoutFieldColumnNameException;
 import br.com.csouza.exceptions.WithoutTableNameException;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * Métodos para manipulação das anotações do banco de dados.
+ *
+ * @author Caique Souza
+ * @version 1.0
+ */
 public class TableUse {
+    /**
+     * Método responsável por obter o nome da tabela registrada na entidade com base em um objeto.
+     * @param o Objeto do tipo da entidade a ter o nome da tabela obtido.
+     * @return Nome da tabela.
+     * @throws WithoutTableNameException Exception lançada caso a entidade não possua a anotação "WithoutTableNameException".
+     */
     public static String getTableName(Object o) throws WithoutTableNameException {
         final Class<?> oClass = o.getClass();
 
         return getName(oClass);
     }
 
+    /**
+     * Método responsável por obter o nome da tabela registrada na entidade com base em sua ".class".
+     * @param oClass ".class" da entidade a ter o nome obtido.
+     * @return Nome da tabela.
+     * @throws WithoutTableNameException Exception lançada caso a entidade não possua a anotação "WithoutTableNameException".
+     */
     public static String getTableNameClass(Class<?> oClass) throws WithoutTableNameException {
         return getName(oClass);
     }
 
+    /**
+     * Método privado responsável por obter o nome da tabela.
+     * @param oClass Classe da entidade a ter o nome obtido.
+     * @return Nome da tabela registrada na entidade.
+     * @throws WithoutTableNameException Exception lançada caso a entidade não possua a anotação "WithoutTableNameException".
+     */
     private static String getName(Class<?> oClass) throws WithoutTableNameException {
         TableName hasAnnotation = oClass.getAnnotation(TableName.class);
 
@@ -55,6 +78,11 @@ public class TableUse {
         });
     }
 
+    /**
+     * Método para obter a junção dos resultados de "getDatabaseFieldsTableColumn" e "getFilteredFieldsTableColumn".
+     * @param oClass Class a ser passada para o método "getFilteredFieldsTableColumn".
+     * @return Stream filtrada contendo somente os atributos que possuem a anotação "TableColumn".
+     */
     public static Stream<Field> getFilteredFieldsDatabaseTableColumn(Class<?> oClass) {
         final Stream<Field> databaseFields = getDatabaseFieldsTableColumn();
         final Stream<Field> classFields = getFilteredFieldsTableColumn(oClass);
@@ -99,6 +127,12 @@ public class TableUse {
         return hasAnnotation.javaName();
     }
 
+    /**
+     * Método para obter o nome do tipo do atributo.
+     * @param f Atributo a ter o tipo obtido.
+     * @return String do tipo do atributo.
+     * @throws WithoutFieldColumnNameException Exception lançada caso o atributo não possua a anotação "TableColumn".
+     */
     public static String getTableColumnType(Field f) throws WithoutFieldColumnNameException {
         final TableColumn hasAnnotation = f.getAnnotation(TableColumn.class);
 
@@ -109,6 +143,12 @@ public class TableUse {
         return f.getType().getSimpleName();
     }
 
+    /**
+     * Método para obter a ".class" do atributo
+     * @param f Atributo a ter o tipo obtido.
+     * @return Class do tipo do atributo.
+     * @throws WithoutFieldColumnNameException Exception lançada caso o atributo não possua a anotação "TableColumn".
+     */
     public static Class<?> getTableColumnTypeClass(Field f) throws WithoutFieldColumnNameException {
         final TableColumn hasAnnotation = f.getAnnotation(TableColumn.class);
 

@@ -91,13 +91,11 @@ public class ClientDAOTest {
         this.dao.store(c5);
         this.dao.store(c6);
 
-        final Client newData = c4;
+        c4.setName("Ana Paula");
+        c4.setSurname("De Camargo");
+        c4.setEmail("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
-        newData.setName("Ana Paula");
-        newData.setSurname("De Camargo");
-        newData.setEmail("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
-        final int result = this.dao.update(newData);
+        final int result = this.dao.update(c4);
 
         Client client = this.dao.show(c4.getId());
 
