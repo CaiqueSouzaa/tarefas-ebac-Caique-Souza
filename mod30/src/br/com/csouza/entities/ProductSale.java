@@ -18,10 +18,9 @@ public class ProductSale extends DatabaseEntity {
 
     public ProductSale() {}
 
-    public ProductSale(Product product, int amount, float price, Sale sale) {
+    public ProductSale(Product product, int amount, Sale sale) {
         this.product = product;
         this.amount = amount;
-        this.price = price;
         this.sale = sale;
     }
 

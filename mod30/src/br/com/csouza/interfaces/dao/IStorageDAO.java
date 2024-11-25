@@ -1,13 +1,10 @@
 package br.com.csouza.interfaces.dao;
 
-import br.com.csouza.entities.Product;
 import br.com.csouza.entities.Storage;
-import br.com.csouza.exceptions.WithoutTableNameException;
 import br.com.csouza.interfaces.database.IIndex;
 import br.com.csouza.interfaces.database.IShow;
 
 import java.sql.SQLException;
-import java.util.Collection;
 
 public interface IStorageDAO extends IShow<Storage>, IIndex<Storage> {
     /**

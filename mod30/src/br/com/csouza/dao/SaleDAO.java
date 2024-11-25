@@ -1,11 +1,10 @@
 package br.com.csouza.dao;
 
 import br.com.csouza.annotations.use.TableUse;
-import br.com.csouza.entities.Client;
-import br.com.csouza.entities.Sale;
-import br.com.csouza.entities.Status;
+import br.com.csouza.entities.*;
 import br.com.csouza.exceptions.WithoutTableNameException;
 import br.com.csouza.factories.BuildSale;
+import br.com.csouza.interfaces.dao.IProductSaleDAO;
 import br.com.csouza.interfaces.dao.ISaleDAO;
 
 import java.sql.Connection;
@@ -17,6 +16,12 @@ import java.util.Collection;
 import java.util.List;
 
 public class SaleDAO extends GenericDAO<Sale> implements ISaleDAO {
+    private IProductSaleDAO productSaleDAO;
+
+    public SaleDAO() {
+        this.productSaleDAO = new ProductSaleDAO();
+    }
+
     @Override
     protected Class<Sale> getEntityClass() {
         return Sale.class;
@@ -168,12 +173,44 @@ public class SaleDAO extends GenericDAO<Sale> implements ISaleDAO {
 
     @Override
     public Integer finish(Sale sale) throws Exception {
-        return 0;
+        final Connection conn = this.getDbConnection();
+        PreparedStatement stm = null;
+
+        try {
+            stm = conn.prepareStatement(this.getFinishSQL());
+
+            this.prepareFinishSQL(stm, sale);
+
+            return stm.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.closeConnection(conn, stm, null);
+        }
     }
 
     @Override
     public Integer cancel(Sale sale) throws Exception {
-        return 0;
+        final Connection conn = this.getDbConnection();
+        PreparedStatement stm = null;
+
+        try {
+            stm = conn.prepareStatement(this.getCancelSQL());
+
+            this.prepareCancelSQL(stm, sale);
+
+            return stm.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.closeConnection(conn, stm, null);
+        }
+    }
+
+    @Override
+    public Integer addProducts(Sale sale, Product product, int amount) throws Exception {
+        final ProductSale productSale = new ProductSale(product, amount, sale);
+        return this.productSaleDAO.store(productSale);
     }
 
     /**
@@ -192,8 +229,50 @@ public class SaleDAO extends GenericDAO<Sale> implements ISaleDAO {
      * @param sale Venda a ter o status atualizado.
      * @throws SQLException Exception lançada caso ocorra algum erro durante o processo.
      */
-    protected  void prepareOpenSQL(PreparedStatement stm, Sale sale) throws SQLException {
+    protected void prepareOpenSQL(PreparedStatement stm, Sale sale) throws SQLException {
         stm.setLong(1, 1L);
+        stm.setLong(2, sale.getId());
+    }
+
+    /**
+     * Método responsável por obter a query de atualização de status não formatada para "FINALIZADA".
+     * @return Query de atualização não formatada.
+     * @throws WithoutTableNameException Exception lançada caso a entidade não possua a anotação "WithoutTableNameException".
+     */
+    protected String getFinishSQL() throws WithoutTableNameException {
+        return "UPDATE " + TableUse.getTableNameClass(Sale.class) +
+                " SET status_id = ? WHERE id = ?";
+    }
+
+    /**
+     * Método responsável por formatar a query de atualização de status para "FINALIZADA".
+     * @param stm PreparedStatement contendo a query de atualização.
+     * @param sale Venda a ter o status atualizado.
+     * @throws SQLException Exception lançada caso ocorra algum erro durante o processo.
+     */
+    protected void prepareFinishSQL(PreparedStatement stm, Sale sale) throws SQLException {
+        stm.setLong(1, 2L);
+        stm.setLong(2, sale.getId());
+    }
+
+    /**
+     * Método responsável por obter a query de atualização de status não formatada para "CANCELADA".
+     * @return Query de atualização não formatada.
+     * @throws WithoutTableNameException Exception lançada caso a entidade não possua a anotação "WithoutTableNameException".
+     */
+    protected String getCancelSQL() throws WithoutTableNameException {
+        return "UPDATE " + TableUse.getTableNameClass(Sale.class) +
+                " SET status_id = ? WHERE id = ?";
+    }
+
+    /**
+     * Método responsável por formatar a query de atualização de status para "CANCELADA".
+     * @param stm PreparedStatement contendo a query de atualização.
+     * @param sale Venda a ter o status atualizado.
+     * @throws SQLException Exception lançada caso ocorra algum erro durante o processo.
+     */
+    protected void prepareCancelSQL(PreparedStatement stm, Sale sale) throws SQLException {
+        stm.setLong(1, 3L);
         stm.setLong(2, sale.getId());
     }
 }

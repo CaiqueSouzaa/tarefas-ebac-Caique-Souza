@@ -24,7 +24,7 @@ public abstract class GenericDAO<T extends DatabaseEntity> implements IGenericDA
      * @throws SQLException Exception lançada caso ocorra algum erro durante o processo.
      */
     protected Connection getDbConnection() throws SQLException {
-        return PostgreSQLTestFactory.getConnection();
+        return ConnectionFactory.getConnection();
     }
 
     @Override
