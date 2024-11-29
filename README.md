@@ -64,3 +64,6 @@ Repositório criado com o objetivo de realizar a entrega de atividades EBAC
 
 ## Módulo 30 - Entrega do projeto do módulo 30
 [Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/mod30) - Projeto n° 03, módulo 30
+
+## Módulo 32 - Primeira atividade usando o Hibernate ORM
+[Link de acesso](https://github.com/CaiqueSouzaa/tarefas-ebac-Caique-Souza/tree/main/mod32) - Atividade Hibernate ORM
